@@ -162,7 +162,8 @@ class _HomeScreenState extends State<HomeScreen> {
               stream: db.watch(
                 'SELECT * FROM todos ORDER BY created_at DESC'
               ).map((results) {
-                return results.map((row) => Todo.fromMap(row)).toList();
+                // Convert ResultSet (List of Rows) to List<Todo>
+                return results.map((row) => Todo.fromMap(Map<String, dynamic>.from(row))).toList();
               }),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
