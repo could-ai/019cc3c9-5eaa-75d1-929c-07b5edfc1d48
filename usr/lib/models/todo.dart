@@ -11,11 +11,11 @@ class Todo {
     required this.completed,
   });
 
-  factory Todo.fromRow(Row row) {
+  factory Todo.fromMap(Map<String, dynamic> map) {
     return Todo(
-      id: row['id'] as String,
-      task: row['task'] as String,
-      completed: (row['completed'] as int) == 1,
+      id: map['id'] as String,
+      task: map['task'] as String,
+      completed: (map['completed'] as int) == 1,
     );
   }
 }

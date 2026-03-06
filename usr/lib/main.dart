@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:powersync/powersync.dart';
+import 'package:powersync/powersync.dart' hide Column, Table;
+import 'package:uuid/uuid.dart';
 import 'app_config.dart';
 import 'services/powersync_service.dart';
 import 'models/todo.dart';
@@ -51,6 +52,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Controller for the new task input
   final TextEditingController _controller = TextEditingController();
+  final uuid = const Uuid();
 
   @override
   void initState() {
@@ -160,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
               stream: db.watch(
                 'SELECT * FROM todos ORDER BY created_at DESC'
               ).map((results) {
-                return results.map((row) => Todo.fromRow(row)).toList();
+                return results.map((row) => Todo.fromMap(row)).toList();
               }),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {

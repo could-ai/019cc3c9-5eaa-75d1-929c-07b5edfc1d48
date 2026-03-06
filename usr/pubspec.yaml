@@ -12,7 +12,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   
   # PowerSync & Database
-  powersync: ^1.8.0
+  # Downgrading to 1.7.2 to avoid 'Deprecated.subclass' error in 1.8.0
+  powersync: ^1.7.2
   sqlite3: ^2.4.0
   sqlite3_flutter_libs: ^0.5.20
   path_provider: ^2.1.2
@@ -20,6 +21,9 @@ dependencies:
   
   # Supabase (Common backend for PowerSync)
   supabase_flutter: ^2.8.0
+  
+  # Utils
+  uuid: ^4.3.3
 
 dev_dependencies:
   flutter_test:
